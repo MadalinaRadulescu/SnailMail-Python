@@ -1,4 +1,4 @@
-email = input("Your email address: ")
+email = raw_input("Your email address: ")
 
 # "hello.worldcom"    => An email address has to contain a '@' character!
 # "he@llo@world.com"  => An email address cannot contain more than one '@' characters!
@@ -20,6 +20,7 @@ position_of_first_dot = email.find(".")
 position_of_last_dot = email.rfind(".")
 position_of_first_dot_after_the_at = email.find(".", position_of_at)
 
+
 error_message_no_at = "An email address has to contain a '@' character!"
 error_message_too_many_at = "An email address cannot contain more than one '@' characters!"
 error_message_no_username = "The username before the '@' character cannot be empty!"
@@ -32,5 +33,25 @@ error_message_invalid_username = "The username cannot start with a '.' character
 error_message_no_server_name = "The domain cannot start with a '.' character!"
 ok_message = "Valid email address :)"
 
-# Validate email here
-# Use only the already defined variables!
+if number_of_at_characters == 0:
+    print(error_message_no_at)
+elif number_of_at_characters > 1:
+    print(error_message_too_many_at)
+elif position_of_at == 0:
+    print(error_message_no_username)
+elif position_of_at == len(email) - 1:
+    print(error_message_no_domain)
+elif number_of_dot_characters == 0:
+    print(error_message_no_dot)
+elif position_of_first_dot_after_the_at == -1 :
+    print(error_message_no_dot_in_domain)
+elif position_of_last_dot == len(email) - 1:
+    print(error_message_no_tld)    
+elif position_of_last_dot == len(email) - 2:
+    print(error_message_short_tld)
+elif position_of_first_dot == 0:
+    print(error_message_invalid_username)
+elif position_of_first_dot_after_the_at == position_of_at + 1:
+    print(error_message_no_server_name)
+else:
+    print(ok_message)
